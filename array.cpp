@@ -1,40 +1,29 @@
 #include <iostream>
 using namespace std;
 
-struct Node {
-    int data;
-    Node* next;
-};
-
-// function to insert at end
-void insertEnd(Node*& head, int value) {
-    Node* newNode = new Node{value, nullptr};
-
-    if(head == nullptr) {
-        head = newNode;
-        return;
-    }
-
-    Node* temp = head;
-    while(temp->next != nullptr) {
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
-
 int main() {
-    Node* head = nullptr;
+    int arr[10] = {10,20,30,40,50};
+    int n = 5;
 
-    insertEnd(head, 5);
-    insertEnd(head, 15);
-    insertEnd(head, 25);
+    cout << "Original: ";
+    for(int i=0;i<n;i++) cout<<arr[i]<<" ";
 
-    // print list
-    Node* temp = head;
-    while(temp != nullptr) {
-        cout << temp->data << " ";
-        temp = temp->next;
-    }
+    // Insert at position 2
+    int pos = 2, val = 25;
+    for(int i=n;i>pos;i--)
+        arr[i] = arr[i-1];
+    arr[pos] = val;
+    n++;
 
-    return 0;
+    cout << "\nAfter Insertion: ";
+    for(int i=0;i<n;i++) cout<<arr[i]<<" ";
+
+    // Delete position 3
+    pos = 3;
+    for(int i=pos;i<n-1;i++)
+        arr[i] = arr[i+1];
+    n--;
+
+    cout << "\nAfter Deletion: ";
+    for(int i=0;i<n;i++) cout<<arr[i]<<" ";
 }
